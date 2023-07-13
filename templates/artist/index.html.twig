@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Nos artiste -
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+		{% for user in users %}
+			<div class="p-3 m-xl-4 m-md-3 m-sm-0 col card text-center border border-primary shadow">
+				<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+					<img src="https://mdbootstrap.com/img/new/standard/nature/111.webp" class="img-fluid"/>
+				</div>
+				<div class="card-header">{{ user.firstName ~ ' ' ~ user.lastName }}</div>
+				<div class="card-body d-flex flex-column justify-content-between p-0 m-3 my-4">
+					<h5 class="card-title">{{ user.email }}</h5>
+					<button type="button pt-3" class="btn btn-primary"><a class="text-light" href="{{ path('app_profil', {'id' : user.id })}}">DECOUVRIR</a></button>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
