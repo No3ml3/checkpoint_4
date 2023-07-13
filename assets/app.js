@@ -23,7 +23,6 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const totalMusicId = document.getElementById('js-lenght-music');
 const total = totalMusicId.dataset.set;
-console.log(total);
 
 for (let i = 1; i < total; i++) {
     document.getElementById("watchlist" + i).addEventListener("click", addToWatchlist);

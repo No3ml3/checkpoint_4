@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+	<div class="container-fluid">
+		<div class="ms-4 d-flex justify-content-start">
+			<a class="navbar-brand" href="{{ path('app_home')}}"><img class="logoNavBar" src="{{ asset('build/images/myLogoCheckpoint.webp') }}" alt="logo site web"></a>
+		</div>
+		<div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+			<ul class="navbar-nav me-5 mb-2 mb-lg-0">
+				<li class="mx-3 nav-item">
+					<a class="nav-link" href="{{ path('app_admin2')}}">Admin home</a>
+				</li>
+				<li class="mx-3 nav-item">
+					<a class="nav-link" href="{{ path('app_music_index')}}">Musique</a>
+				</li>
+				<li class="mx-3 nav-item">
+					<a class="nav-link" href="{{ path('app_type_index')}}">Genre</a>
+				</li>
+				<li class="mx-3 nav-item">
+					<a class="nav-link" href="{{ path('app_user_index')}}">Artiste</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

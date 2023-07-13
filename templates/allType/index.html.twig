@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Hello TypeController!
+{% endblock %}
+
+{% block body %}
+	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+		{% for type in types %}
+			<div class="m-xl-4 m-md-3 m-sm-0 col card text-center border border-primary shadow">
+				<a href="#">
+					<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+						<img src="https://mdbootstrap.com/img/new/standard/nature/111.webp" class="img-fluid"/>
+					</div>
+					<div class="card-body">
+						<h2>{{ type.name }}</h2>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

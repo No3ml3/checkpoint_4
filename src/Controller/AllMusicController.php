@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Music;
+use App\Entity\User;
 use App\Repository\MusicRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -51,5 +52,27 @@ class AllMusicController extends AbstractController
         return $this->json([
             'isInWatchlist' => $user->isInFavorite($music)
         ]);
+    }
+
+    #[Route('/{id}/mesMusique', name: 'all_myMusic')]
+    public function myMusic(User $user, MusicRepository $musicRepository): Response
+    {
+        $musics = $musicRepository->findBy(['user' => $user]);
+
+        return $this->render('AllMusic/myMusic.html.twig', 
+    [
+        'musics' => $musics,
+    ]);
+    }    
+
+    #[Route('/{id}/mesLike', name: 'all_myLike')]
+    public function myLike(User $user, MusicRepository $musicRepository): Response
+    {
+        $musics = $musicRepository->findAll();
+
+        return $this->render('AllMusic/myLike.html.twig', 
+    [
+        'musics' => $musics,
+    ]);
     }
 }
