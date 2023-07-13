@@ -11,21 +11,37 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class MusicFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const MUSIC = 100;
+    public const MUSIC_COUNT = 100;
+    public array $musicArray = [
+        'music1.mp3',
+        'music2.mp3',
+        'music3.mp3',
+        'music4.mp3',
+        'music5.mp3',
+        'music6.mp3',
+        'music7.mp3',
+        'music8.mp3',
+        'music9.mp3',
+        'music10.mp3',
+        'music11.mp3',
+        'music12.mp3',
+        'music13.mp3',
+    ];
     public function load(ObjectManager $manager): void
     {
-            $faker = Factory::create('fr_FR');
-    
-            for($i=0; $i < self::MUSIC; $i++){
-                $music = new Music();
-                $music->setName($faker->word(). $faker->firstName());
-    
-                $music->setType($this->getReference('type_' . $faker->numberBetween(1, TypeFixtures::TYPE -1)));
+        $faker = Factory::create('fr_FR');
 
-                $this->addReference('music_' . $i, $music);
+        for ($i = 0; $i < self::MUSIC_COUNT; $i++) {
+            $music = new Music();
+            $music->setName($faker->word() . $faker->firstName());
+            $music->setAudio($this->musicArray[$faker->numberBetween(0, (count($this->musicArray)-1))]);
 
-                $manager->persist($music);
-            }
+            $music->setType($this->getReference('type_' . $faker->numberBetween(1, TypeFixtures::TYPE - 1)));
+
+            $this->addReference('music_' . $i, $music);
+
+            $manager->persist($music);
+        }
 
         $manager->flush();
     }
@@ -36,4 +52,3 @@ class MusicFixtures extends Fixture implements DependentFixtureInterface
         ];
     }
 }
-

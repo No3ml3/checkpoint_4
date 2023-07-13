@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+	<div class="container-fluid">
+		<div class="ms-4 d-flex justify-content-start">
+			<a class="navbar-brand" href="{{ path('app_home')}}"><img class="logoNavBar" src="{{ asset('build/images/myLogoCheckpoint.webp') }}" alt="logo site web"></a>
+		</div>
+		<div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+			<ul class="navbar-nav me-5 mb-2 mb-lg-0">
+				<li class="mx-3 nav-item">
+					<a class="nav-link" href="{{ path('app_home')}}">HOME</a>
+				</li>
+				<li class="mx-3 nav-item">
+					<a class="nav-link" href="{{ path('app_all_music')}}">MUSIQUES</a>
+				</li>
+				<li class="mx-3 nav-item">
+					<a class="nav-link" href="#">GENRES</a>
+				</li>
+				<li class="mx-3 nav-item">
+					<a class="nav-link" href="#">ARTISTES</a>
+				</li>
+				{% if app.user %}
+					<li class="mx-3 nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							VOIR PLUS
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="#">MON PROFIL</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">MES LIKES</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">MES MUSIQUES</a>
+							</li>
+							<li><hr class="dropdown-divider"></li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_logout')}}">SE DECONNECTER</a>
+							</li>
+							{% if is_granted("ROLE_ADMIN") %}
+							<li>
+								<a class="dropdown-item" href="#">ADMIN</a>
+							</li>
+							{% endif %}
+						</ul>
+					</li>
+				{% else %}
+					<li class="mx-3 nav-item">
+						<a class="nav-link" href="{{ path('app_login')}}">CONNECTION</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+</nav></div>

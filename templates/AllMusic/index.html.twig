@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Musiques -
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<h1>MUSIQUE MAESTRO</h1>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Artiste</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for music in musics %}
+					<tr>
+						<td>{{ music.name }}</td>
+						<td>{{ music.user.firstName ~ ' ' ~  music.user.lastName }}</td>
+						<td>
+							<figure>
+								<audio controls src="{{ asset('build/audio/' ~ music.audio) }}"></audio>
+							</figure>
+						</td>
+						<td></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+{% endblock %}
