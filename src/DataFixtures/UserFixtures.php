@@ -41,6 +41,11 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 $user->addMusic($this->getReference('music_' . $faker->numberBetween(0, MusicFixtures::MUSIC_COUNT - 1)));
             }
 
+            for ($k = 0; $k < $faker->numberBetween(1, 30); $k++) {
+                $user->addFavorite($this->getReference('music_' . $faker->numberBetween(0, MusicFixtures::MUSIC_COUNT - 1)));
+            }
+            
+
             $this->addReference('user_' . $i, $user);
 
             $manager->persist($user);

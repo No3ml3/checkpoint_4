@@ -47,9 +47,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Music::class)]
     private Collection $music;
 
+    #[ORM\ManyToMany(targetEntity: Music::class, inversedBy: 'numberFavorie')]
+    private Collection $favorite;
+
     public function __construct()
     {
         $this->music = new ArrayCollection();
+        $this->favorite = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -198,5 +202,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Music>
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->favorite;
+    }
+
+    public function addFavorite(Music $favorite): static
+    {
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite->add($favorite);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Music $favorite): static
+    {
+        $this->favorite->removeElement($favorite);
+
+        return $this;
+    }
+    public function isInFavorite(Music $music): bool
+    {
+        if (in_array($music, $this->getFavorite()->toArray())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
