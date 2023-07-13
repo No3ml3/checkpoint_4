@@ -20,7 +20,11 @@ class Music
     #[ORM\JoinColumn(nullable: false)]
     private ?Type $type = null;
 
-    #[ORM\ManyToOne(inversedBy: 'musics')]
+    #[ORM\Column(length: 255)]
+    private ?string $audio = null;
+
+    #[ORM\ManyToOne(inversedBy: 'music')]
+    #[ORM\JoinColumn(nullable: true)]
     private ?User $user = null;
     public function getId(): ?int
     {
@@ -47,6 +51,18 @@ class Music
     public function setType(?Type $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getAudio(): ?string
+    {
+        return $this->audio;
+    }
+
+    public function setAudio(string $audio): static
+    {
+        $this->audio = $audio;
 
         return $this;
     }

@@ -1,5 +1,11 @@
-body {
-    background-color: lightgray;
+img {
+    object-fit: cover;
+    width: 100%;
 }
+
+.logoNavBar{
+    width: 7%
+}
+
 
 @import "~bootstrap/scss/bootstrap";
