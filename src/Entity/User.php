@@ -50,10 +50,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Music::class, inversedBy: 'numberFavorie')]
     private Collection $favorite;
 
+    #[ORM\ManyToMany(targetEntity: Type::class, mappedBy: 'Favorite')]
+    private Collection $favoriteType;
+
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'favoriteArtists')]
+    private Collection $favoriteUser;
+
+    #[ORM\ManyToMany(targetEntity: self::class, mappedBy: 'favoriteUser')]
+    private Collection $favoriteArtists;
+
     public function __construct()
     {
         $this->music = new ArrayCollection();
         $this->favorite = new ArrayCollection();
+        $this->favoriteType = new ArrayCollection();
+        $this->favoriteUser = new ArrayCollection();
+        $this->favoriteArtists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -230,6 +242,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function isInFavorite(Music $music): bool
     {
         if (in_array($music, $this->getFavorite()->toArray())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @return Collection<int, Type>
+     */
+    public function getFavoriteType(): Collection
+    {
+        return $this->favoriteType;
+    }
+
+    public function addFavoriteType(Type $favoriteType): static
+    {
+        if (!$this->favoriteType->contains($favoriteType)) {
+            $this->favoriteType->add($favoriteType);
+            $favoriteType->addFavorite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteType(Type $favoriteType): static
+    {
+        if ($this->favoriteType->removeElement($favoriteType)) {
+            $favoriteType->removeFavorite($this);
+        }
+
+        return $this;
+    }
+
+    public function isInFavoriteType(Type $type): bool
+    {
+        if (in_array($type, $this->getFavoriteType()->toArray())) {
             return true;
         } else {
             return false;

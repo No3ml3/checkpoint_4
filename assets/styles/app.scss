@@ -1,11 +1,56 @@
+@import "_fonts";
+@import "_variables";
+@import "~bootstrap/scss/bootstrap";
+
+/* image */
 img {
     object-fit: cover;
     width: 100%;
 }
 
-.logoNavBar{
+/* all web site */
+.container-body {
+    margin-top: 10rem;
+}
+
+/* title */
+.title-page-main {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* nav bar */
+.logoNavBar {
     width: 7%
 }
 
+nav {
+    background: $background-gradient-color;
+}
 
-@import "~bootstrap/scss/bootstrap";
+/* footer */
+.footer-copyright-part {
+    background: $background-gradient-color;
+}
+
+.line-footer {
+    width: 75%;
+    height: 2px;
+    background: $background-gradient-color;
+    margin-bottom: 2rem;
+}
+
+/* card */
+.card-type-background {
+    background: $background-gradient-color;
+}
+
+/* add music form */
+.border-add-music-form {
+    border: solid 2px $secondary;
+}
+
+/* against bootstrap */
+a {
+    color: $light;
+}
