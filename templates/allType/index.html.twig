@@ -1,18 +1,33 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Hello TypeController!
+{% block title %}
+	Les genre -
+	{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('genre-js') }}
 {% endblock %}
 
 {% block body %}
+	{% set total =  types|length  %}
+	<div id="js-lenght-type" data-set="{{ total }}"></div>
+	<h1 class="text-center mb-5 title-page-main">Genres maestro</h1>
 	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 		{% for type in types %}
-			<div class="m-xl-4 m-md-3 m-sm-0 col card text-center border border-primary shadow">
+			<div class="m-xl-4 m-md-3 m-sm-0 p-0 col card text-center shadow card-type-background">
 				<a href="#">
-					<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-						<img src="https://mdbootstrap.com/img/new/standard/nature/111.webp" class="img-fluid"/>
+					<div class="bg-image" data-mdb-ripple-color="light">
+						<img src="{{ type.picture }}" class="img-fluid"/>
 					</div>
 					<div class="card-body">
-						<h2>{{ type.name }}</h2>
+						<h2 class="text-light">{{ type.name }}</h2>
+						{% if app.user %}
+							<a id="{{ 'isInFavoriteType' ~ loop.index }}" href="{{ path('app_favorite_type', {id: type.id})}}">
+								<i class="bi {{ app.user.isInFavoriteType(type) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
+							</a>
+						{% endif %}
 					</div>
 				</a>
 			</div>

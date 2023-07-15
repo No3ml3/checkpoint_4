@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Ajouté une musique -
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center mb-5 title-page-main">Ajouté une musique</h1>
+	<div class="d-flex justify-content-center pb-5">
+		<div class="border-add-music-form rounded p-4 py-5 d-flex justify-content-center w-50">
+			<div class="bg-primary rounded w-75 px-5">
+				{{ form_start(form) }}
+				{{ form_widget(form) }}
+				<div class="d-flex justify-content-end">
+					<button class="btn btn-primary text-uppercase mb-5 border-light">{{ button_label|default('Ajouté') }}</button>
+				</div>
+			</div>
+		</div>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

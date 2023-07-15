@@ -4,10 +4,15 @@
 	{{ parent() }}
 {% endblock %}
 
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('music-js') }}
+{% endblock %}
+
 {% block body %}
 	{% set total =  musics|length  %}
 	<div id="js-lenght-music" data-set="{{ total }}"></div>
-	<h1>MUSIQUE MAESTRO</h1>
+	<h1 class="text-center mb-5 title-page-main">Musiques maestro</h1>
 	<div>
 		<table>
 			<tr>
