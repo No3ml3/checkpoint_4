@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Connection -
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center mb-5 title-page-main">Connectez-vous</h1>
+	<div class="d-flex justify-content-center pb-5">
+		<div class="border-add-music-form rounded p-4 py-5 d-flex justify-content-center w-50">
+			<div class="bg-primary rounded w-75 px-5">
+				{% if error %}
+					<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+
+				<form action="{{ path('app_login') }}" method="post">
+					<label class="text-dark form-label text-uppercase letter-spacing mt-4" for="username">Email:</label>
+					<input class="m-1 w-100" type="text" id="username" name="_username" value="{{ last_username }}">
+
+					<label class="text-dark form-label text-uppercase letter-spacing mt-4"  for="password">Password:</label>
+					<input class="m-1 w-100" type="password" id="password" name="_password">
+
+					<div class="d-flex justify-content-end">
+					<button class="btn btn-primary text-uppercase mb-5 mt-4 border-light">{{ button_label|default('Connection') }}</button>
+				</div>
+				</form>
+				<p class="text-dark">Pas encore de compte ?<a href="{{ path('app_register')}}">
+						Inscrivez-vous !</a>
+				</p>
+				<p class="text-dark">Oublié votre mot de passe ?<a href="{{ path('app_forgot_password_request')}}">
+						Changez-le !</a>
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

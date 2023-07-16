@@ -1,6 +1,4 @@
-@import "_fonts";
-@import "_variables";
-@import "~bootstrap/scss/bootstrap";
+@import "_theme.scss";
 
 /* image */
 img {
@@ -54,3 +52,7 @@ nav {
 a {
     color: $light;
 }
+
+.btn{
+    background-color: $primary-light;
+}   
