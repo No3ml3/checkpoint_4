@@ -2,10 +2,19 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-    {{ encore_entry_link_tags('home') }}
+	{{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block header %}
+	<div class="headerHome">
+		<h1 class="headerTitle text-light text-center"><span class="titleName">Maestro Music</span><br><br><br>Explorez l'univers musical underground, où chaque artiste trouve sa voix. <br><br> Partagez vos créations, découvrez de nouveaux talents et plongez dans une symphonie de genres variés,<br><br> librement offerte à vos oreilles.</h1>
+	</div>
 {% endblock %}
 
 {% block body %}
-	<h1>you did it
-	</h1>
+
+	<div>
+		<h1>you did it
+		</h1>
+	</div>
 {% endblock %}

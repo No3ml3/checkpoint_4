@@ -18,6 +18,7 @@
 	</head>
 	<body {{ stimulus_controller('theme') }} {{ stimulus_target('theme', 'body') }}>
 			{% block navBar %}{% endblock %}
+			{% block header %}{% endblock %}
 		<main class="container container-body"> {% block body %}{% endblock %}
 			</main>
 			{% block footer %}{% endblock %}
