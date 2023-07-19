@@ -49,6 +49,13 @@ class MusicType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
+                'label' => 'fichier audio',
+                'attr' => [
+                    'class' => 'm-1 w-100'
+                ],
+                'label_attr' => [
+                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                ],
     ])
             ;
     }

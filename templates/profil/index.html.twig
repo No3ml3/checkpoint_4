@@ -5,59 +5,46 @@
 {% endblock %}
 
 {% block body %}
-	<div class="row">
-		<div class="col-6"><img class="p-1 rounded-circle" src="{{ user.picture is not empty ? vich_uploader_asset(user) : asset('build/images/user.png') }}" alt="{{ user.name ?? 'Default' }} image"></div>
-		<div class="col-6 d-flex flex-column justiy-content-evenly">
-			<h1>{{ user.firstName ~ ' ' ~ user.lastName }}</h1>
-			<ul>
-				<li>Anniversaire : {{ user.birthday is not empty ? user.birthday|date("d/m/y") : 'd/m/y' }}</li>
-				<li> Pays : {{ user.country}}</li>
-				<li>Email : {{ user.email }}</li>
-			</ul>
-			<div><a href="#">Modifie ton profile</a></div>
+	<h1 class="text-center mb-5 title-page-main">Mon profil</h1>
+	<div class="border-add-music-form rounded p-4 py-5 d-flex justify-content-center mb-5">
+		<div class="bg-primary rounded w-75 p-5">
+			<h1 class="title-page-main mb-3 text-center">{{ user.speudo }}</h1>
+			<div class="row">
+				<div class="col-6"><img class="p-1 rounded-circle border" src="{{ user.picture is not empty ? vich_uploader_asset(user) : asset('build/images/user.png') }}" alt="{{ user.name ?? 'Default' }} image"></div>
+				<div class="col-6 d-flex flex-column justify-content-evenly align-items-center">
+					<div>
+
+						<ul>
+							<li>Prénom :
+								{{ user.firstName }}</li>
+							<li>Nom :
+								{{ user.lastName }}</li>
+							<li>Anniversaire :
+								{{ user.birthday is not empty ? user.birthday|date("d/m/y") : 'd/m/y' }}</li>
+							<li>
+								Pays :
+								{{ user.country is not empty ? user.country|country_name : '' }}</li>
+							<li>Email :
+								{{ user.email }}</li>
+								<br>
+							<li>
+								<a class="text-dark" href="{{ path('app_forgot_password_request')}}"><i class="bi bi-arrow-right"></i> Change ton mot de passe</a>
+							</li>
+							<br>
+							<br>
+							<li>
+								<a class="text-dark" href="{{ path('app_all_myMusic', {'id' : app.user.id })}}"><i class="bi bi-arrow-right"></i> Mes {{ user.music|length }} musiques</a>
+							</li>
+							<li>
+								<a class="text-dark" href="{{ path('app_all_myLike', {'id' : app.user.id })}}"><i class="bi bi-arrow-right"></i> Mes {{ user.favorite|length }} musiques favorites</a>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<a class="btn text-dark border m-3 " href="{{ path('app_profil_modifie', {'id' : app.user.id })}}">Modifie ton profile</a>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-
-
-<div>
-	<table>
-		<tr>
-			<th>Titre</th>
-			<th>Artiste</th>
-			<th></th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-	<div>
-	<div>
-	<h2>Mes musiques</h2>
-	<p>{{ user.music|length }}</p>
-	<a href="#">cliquer ici pour les découvrir</a>
-	</div>
-	<h2>Mes musiques favorites</h2>
-	<p>{{ user.favorite|length }}</p>
-	<a href="#">cliquer ici pour les découvrir</a>
-	</div>
-	
-		{% for music in user.favorite %}
-		
-			<tr>
-				<td>{{ music.name }}</td>
-				<td>{{ music.user.firstName ~ ' ' ~  music.user.lastName }}</td>
-				<td>
-					<figure>
-						<audio controls src="{{ asset('build/audio/' ~ music.audio) }}"></audio>
-					</figure>
-				</td>
-				<td>
-					<a>
-						<i class="bi bi-heart-fill"></i>
-					</a>
-
-				</td>
-			</tr>
-		{% endfor %}
-	</tbody>
-</table>{% endblock %}
+	</div>	
+{% endblock %}

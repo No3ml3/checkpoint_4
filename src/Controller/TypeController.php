@@ -42,14 +42,6 @@ class TypeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_type_show', methods: ['GET'])]
-    public function show(Type $type): Response
-    {
-        return $this->render('type/show.html.twig', [
-            'type' => $type,
-        ]);
-    }
-
     #[Route('/{id}/modifié', name: 'app_type_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Type $type, EntityManagerInterface $entityManager): Response
     {

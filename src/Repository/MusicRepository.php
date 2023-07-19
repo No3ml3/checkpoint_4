@@ -25,12 +25,27 @@ class MusicRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-        SELECT music.id, music.name, music.audio, user.first_name,  user.last_name, user.id, COUNT(user.id) AS user_count
-        FROM music
-        JOIN user_music ON music.id = user_music.music_id
-        JOIN user ON user.id = user_music.user_id
-        GROUP BY music.id, music.name, user.first_name, user.last_name, user.id, music.audio
-        LIMIT 4;
+        SELECT
+        m.name AS name,
+        m.audio AS audio,
+        u.first_name AS firstName,
+        u.last_name AS lastName,
+        g.name AS genreName, 
+        g.picture AS genrePicture, 
+        COUNT(um.user_id) AS numberFav
+    FROM
+        music m
+    JOIN
+        user u ON m.user_id = u.id
+    LEFT JOIN
+        user_music um ON m.id = um.music_id
+    JOIN
+        type g ON m.type_id = g.id
+    GROUP BY
+        m.name, m.audio, u.first_name, u.last_name, g.name, g.picture
+    ORDER BY
+        COUNT(um.user_id) DESC
+    LIMIT 4;
             ';
 
         $resultSet = $conn->executeQuery($sql);

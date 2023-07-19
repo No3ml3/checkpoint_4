@@ -42,14 +42,6 @@ class MusicController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_music_show', methods: ['GET'])]
-    public function show(Music $music): Response
-    {
-        return $this->render('music/show.html.twig', [
-            'music' => $music,
-        ]);
-    }
-
     #[Route('/{id}/modifié', name: 'app_music_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Music $music, EntityManagerInterface $entityManager): Response
     {
