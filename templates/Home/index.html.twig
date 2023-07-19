@@ -2,10 +2,40 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-    {{ encore_entry_link_tags('home') }}
+	{{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block header %}
+	<div class="headerHome">
+		<h1 class="headerTitle text-light text-center">
+			<span class="titleName">Maestro Music</span><br><br><br>Explorez l'univers musical underground, où chaque artiste trouve sa voix.
+			<br><br>
+			Partagez vos créations, découvrez de nouveaux talents et plongez dans une symphonie de genres variés,<br><br>
+			librement offerte à vos oreilles.</h1>
+	</div>
 {% endblock %}
 
 {% block body %}
-	<h1>you did it
-	</h1>
+	<div class="row">
+		{% for music in musics %}
+			<div class="col-3">
+				<div class="card text-center border border-primary shadow-0 ">
+					<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+						<img class="rounded" src="https://mdbootstrap.com/img/new/standard/nature/111.webp" class="img-fluid"/>
+						<a href="#!">
+							<div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+						</a>
+					</div>
+
+					<div class="card-body p-0">
+						<h5 class="card-title">{{ music.name }}</h5>
+						<h4>{{ music.first_name ~ ' ' ~  music.last_name }}</h4>
+						<figure>
+							<audio controls src="{{ asset('build/audio/' ~ music.audio) }}"></audio>
+						</figure>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}

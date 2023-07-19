@@ -1,0 +1,19 @@
+@import "_variables.scss";
+
+.headerHome {
+    width: 100%;
+    height: 1000px;
+    background: $background-gradient-color;
+}
+
+.headerTitle{
+    padding-top: 200px;
+    margin-left: 20%;
+    margin-right: 20%;
+    letter-spacing: 3px;
+}
+.titleName{
+    text-transform: uppercase;
+    font-size: 70px;
+    letter-spacing: 5px;
+}

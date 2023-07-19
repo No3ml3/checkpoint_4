@@ -20,29 +20,47 @@ class MusicRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Music::class);
     }
+    public function findFavoriteMusic(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
 
-//    /**
-//     * @return Music[] Returns an array of Music objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+        $sql = '
+        SELECT music.id, music.name, music.audio, user.first_name,  user.last_name, user.id, COUNT(user.id) AS user_count
+        FROM music
+        JOIN user_music ON music.id = user_music.music_id
+        JOIN user ON user.id = user_music.user_id
+        GROUP BY music.id, music.name, user.first_name, user.last_name, user.id, music.audio
+        LIMIT 4;
+            ';
 
-//    public function findOneBySomeField($value): ?Music
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $resultSet = $conn->executeQuery($sql);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    //    /**
+    //     * @return Music[] Returns an array of Music objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('m')
+    //            ->andWhere('m.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('m.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Music
+    //    {
+    //        return $this->createQueryBuilder('m')
+    //            ->andWhere('m.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
