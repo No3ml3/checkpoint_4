@@ -16,16 +16,16 @@
 	<h1 class="text-center mb-5 title-page-main">Genres maestro</h1>
 	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 		{% for type in types %}
-			<div class="m-xl-4 m-md-3 m-sm-0 p-0 col card text-center shadow card-type-background">
-				<a href="#">
-					<div class="bg-image" data-mdb-ripple-color="light">
-						<img src="{{ type.picture }}" class="img-fluid"/>
+			<div class="m-xl-4 m-md-3 m-sm-0 p-0 col card text-center card-type-background p-1">
+				<a href="http://127.0.0.1:8000/musiques/?name=&type={{ type.id }}">
+					<div class="bg-image typeCardBack" data-mdb-ripple-color="light">
+						<img class="imageOnCard" src="{{ type.picture }}" class="img-fluid rounded"/>
 					</div>
 					<div class="card-body">
-						<h2 class="text-light">{{ type.name }}</h2>
+						<h2>{{ type.name }}</h2>
 						{% if app.user %}
 							<a id="{{ 'isInFavoriteType' ~ loop.index }}" href="{{ path('app_favorite_type', {id: type.id})}}">
-								<i class="text-light bi {{ app.user.isInFavoriteType(type) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
+								<i class="bi {{ app.user.isInFavoriteType(type) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
 							</a>
 						{% endif %}
 					</div>

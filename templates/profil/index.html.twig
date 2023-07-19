@@ -10,7 +10,7 @@
 		<div class="bg-primary rounded w-75 p-5">
 			<h1 class="title-page-main mb-3 text-center">{{ user.speudo }}</h1>
 			<div class="row">
-				<div class="col-6"><img class="p-1 rounded-circle border" src="{{ user.picture is not empty ? vich_uploader_asset(user) : asset('build/images/user.png') }}" alt="{{ user.name ?? 'Default' }} image"></div>
+				<div class="col-6"><img class="p-1 rounded-circle border imageProfil" src="{{ user.picture is not empty ? vich_uploader_asset(user) : asset('build/images/user.png') }}" alt="{{ user.name ?? 'Default' }} image"></div>
 				<div class="col-6 d-flex flex-column justify-content-evenly align-items-center">
 					<div>
 

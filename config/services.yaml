@@ -6,6 +6,7 @@
 parameters:
  upload_directory: '%kernel.project_dir%/public/uploads/audio/musics/'
  upload_user: '%kernel.project_dir%/public/uploads/images/user/'
+ upload_type: '%kernel.project_dir%/public/uploads/images/type/'
 
 services:
     # default configuration for services in *this* file

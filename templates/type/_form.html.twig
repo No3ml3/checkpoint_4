@@ -1,4 +1,5 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_widget(form.name) }}
+    {{ form_widget(form.imagesType) }}
     <button class="btn"><i class="bi bi-save-fill"></i>{{ button_label|default('Enregistré') }}</button>
 {{ form_end(form) }}

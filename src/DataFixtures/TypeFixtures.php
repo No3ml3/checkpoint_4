@@ -78,7 +78,6 @@ class TypeFixtures extends Fixture
         'https://mdbootstrap.com/img/new/standard/nature/124.webp',
         'https://mdbootstrap.com/img/new/standard/nature/125.webp',
         'https://mdbootstrap.com/img/new/standard/nature/126.webp',
-        'https://mdbootstrap.com/img/new/standard/nature/127.webp',
         'https://mdbootstrap.com/img/new/standard/nature/128.webp',
         'https://mdbootstrap.com/img/new/standard/nature/129.webp',
         'https://mdbootstrap.com/img/new/standard/nature/130.webp',

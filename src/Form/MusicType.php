@@ -13,8 +13,6 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
-use function PHPSTORM_META\type;
-
 class MusicType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
