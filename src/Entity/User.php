@@ -53,19 +53,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Type::class, mappedBy: 'Favorite')]
     private Collection $favoriteType;
 
-    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'favoriteArtists')]
-    private Collection $favoriteUser;
-
-    #[ORM\ManyToMany(targetEntity: self::class, mappedBy: 'favoriteUser')]
-    private Collection $favoriteArtists;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $picture = null;
 
     public function __construct()
     {
         $this->music = new ArrayCollection();
         $this->favorite = new ArrayCollection();
         $this->favoriteType = new ArrayCollection();
-        $this->favoriteUser = new ArrayCollection();
-        $this->favoriteArtists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -282,5 +277,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         } else {
             return false;
         }
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): static
+    {
+        $this->picture = $picture;
+
+        return $this;
     }
 }

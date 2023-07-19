@@ -5,33 +5,59 @@
 {% endblock %}
 
 {% block body %}
-	<div>
-		<table>
-			<tr>
-				<th>Titre</th>
-				<th>Artiste</th>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for music in user.favorite %}
-				<tr>
-					<td>{{ music.name }}</td>
-					<td>{{ music.user.firstName ~ ' ' ~  music.user.lastName }}</td>
-					<td>
-						<figure>
-							<audio controls src="{{ asset('build/audio/' ~ music.audio) }}"></audio>
-						</figure>
-					</td>
-					<td>
-						<a>
-							<i class="bi bi-heart-fill"></i>
-						</a>
+	<div class="row">
+		<div class="col-6"><img class="p-1 rounded-circle" src="{{ user.picture is not empty ? vich_uploader_asset(user) : asset('build/images/user.png') }}" alt="{{ user.name ?? 'Default' }} image"></div>
+		<div class="col-6 d-flex flex-column justiy-content-evenly">
+			<h1>{{ user.firstName ~ ' ' ~ user.lastName }}</h1>
+			<ul>
+				<li>Anniversaire : {{ user.birthday is not empty ? user.birthday|date("d/m/y") : 'd/m/y' }}</li>
+				<li> Pays : {{ user.country}}</li>
+				<li>Email : {{ user.email }}</li>
+			</ul>
+			<div><a href="#">Modifie ton profile</a></div>
+		</div>
+	</div>
+</div>
 
-					</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-{% endblock %}
+
+<div>
+	<table>
+		<tr>
+			<th>Titre</th>
+			<th>Artiste</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+	<div>
+	<div>
+	<h2>Mes musiques</h2>
+	<p>{{ user.music|length }}</p>
+	<a href="#">cliquer ici pour les découvrir</a>
+	</div>
+	<h2>Mes musiques favorites</h2>
+	<p>{{ user.favorite|length }}</p>
+	<a href="#">cliquer ici pour les découvrir</a>
+	</div>
+	
+		{% for music in user.favorite %}
+		
+			<tr>
+				<td>{{ music.name }}</td>
+				<td>{{ music.user.firstName ~ ' ' ~  music.user.lastName }}</td>
+				<td>
+					<figure>
+						<audio controls src="{{ asset('build/audio/' ~ music.audio) }}"></audio>
+					</figure>
+				</td>
+				<td>
+					<a>
+						<i class="bi bi-heart-fill"></i>
+					</a>
+
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>{% endblock %}

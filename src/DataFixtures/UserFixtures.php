@@ -57,6 +57,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user->setEmail('nbarre14@sfr.fr');
         $user->setRoles(['ROLE_ADMIN']);
         $user->setCountry('FRANCE');
+        $user->setBirthday($faker->dateTimeThisCentury());
         $hashedPassword = $this->passwordHasher->hashPassword(
             $user,
             'adminpassword'
