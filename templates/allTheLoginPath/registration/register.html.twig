@@ -1,19 +1,39 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+	<h1 class="text-center mb-5 title-page-main">Inscrivez-vous</h1>
 
-    {{ form_errors(registrationForm) }}
+	<div class="d-flex justify-content-center pb-5">
+		<div class="border-add-music-form rounded p-4 py-5 d-flex justify-content-center w-50">
+			<div class="bg-primary rounded w-75 px-5">
+				{{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
+				{{ form_start(registrationForm) }}
+
+				<div class="row">
+					<div class="col-md-6">
+						{{ form_row(registrationForm.firstName) }}
+					</div>
+					<div class="col-md-6">
+						{{ form_row(registrationForm.lastName) }}
+					</div>
+				</div>
+				{{ form_row(registrationForm.country) }}
+				{{ form_row(registrationForm.birthday) }}
+				{{ form_row(registrationForm.speudo) }}
+                {{ form_row(registrationForm.imagesUser) }}
+				{{ form_row(registrationForm.email) }}
+				{{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+				<div class="d-flex justify-content-end">
+					<button class="btn btn-primary text-uppercase mb-5 mt-4 border-light">{{ button_label|default('Inscription') }}</button>
+				</div>
+				{{ form_end(registrationForm) }}
+			</div>
+		</div>
+	</div>
 {% endblock %}

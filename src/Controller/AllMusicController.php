@@ -19,7 +19,7 @@ class AllMusicController extends AbstractController
     #[Route('/', name: 'all_music')]
     public function index(MusicRepository $musicRepository): Response
     {
-        $musics = $musicRepository->findAll();
+        $musics = $musicRepository->findBy([], ['name'=> 'ASC']);
 
         return $this->render(
             'AllMusic/index.html.twig',
@@ -94,10 +94,11 @@ class AllMusicController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $music->setUser($this->getUser());
                 $entityManager->persist($music);
                 $entityManager->flush();
 
-                return $this->redirectToRoute('mapp_home', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
             }
 
             return $this->render('AllMusic/add.html.twig', [

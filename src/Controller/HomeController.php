@@ -12,9 +12,11 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(MusicRepository $musicRepository): Response
     { 
-        $musics = $musicRepository->findFavoriteMusic();
+        $musicsNew = $musicRepository->findBy([], ['id' => 'ASC'], 4);
+        $musicsPopular = $musicRepository->findFavoriteMusic();
         return $this->render('Home/index.html.twig',[
-            'musics' => $musics,
+            'musicsPopular' => $musicsPopular,
+            'musicsNew' => $musicsNew,
     ]);
     }
 }

@@ -3,13 +3,16 @@
 {% block title %}Music index{% endblock %}
 
 {% block body %}
-    <h1>Music index</h1>
+    <h1>Toutes les musiques</h1>
+
+
+    <a href="{{ path('app_music_new') }}">Ajouté une musique</a>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
+                <th>Auteur</th>
                 <th>Audio</th>
                 <th>actions</th>
             </tr>
@@ -17,21 +20,18 @@
         <tbody>
         {% for music in music %}
             <tr>
-                <td>{{ music.id }}</td>
                 <td>{{ music.name }}</td>
+                <td>{{ music.user.firstName ~ ' ' ~ music.user.lastName }}</td>
                 <td>{{ music.audio }}</td>
                 <td>
-                    <a href="{{ path('app_music_show', {'id': music.id}) }}">show</a>
-                    <a href="{{ path('app_music_edit', {'id': music.id}) }}">edit</a>
+                    <a href="{{ path('app_music_edit', {'id': music.id}) }}">modifié</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">aucune musique touvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_music_new') }}">Create new</a>
 {% endblock %}

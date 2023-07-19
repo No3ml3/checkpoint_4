@@ -57,6 +57,25 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
     }
 
+  /*   public function findFavoriteArtist(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT user.first_name, user.last_name, user.id, music.id, music.name, COUNT(music.id) AS user_count
+        FROM music
+        JOIN user_music ON music.id = user_music.music_id
+        JOIN user ON user.id = user_music.user_id
+        GROUP BY music.id, music.name, user.first_name, user.last_name, user.id, music.audio
+        LIMIT 4;
+            ';
+
+        $resultSet = $conn->executeQuery($sql);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    } */
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/music')]
+#[Route('/musique')]
 class MusicController extends AbstractController
 {
     #[Route('/', name: 'app_music_index', methods: ['GET'])]
@@ -22,7 +22,7 @@ class MusicController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_music_new', methods: ['GET', 'POST'])]
+    #[Route('/ajouté', name: 'app_music_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $music = new Music();
@@ -50,7 +50,7 @@ class MusicController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_music_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/modifié', name: 'app_music_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Music $music, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MusicType::class, $music);

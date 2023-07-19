@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 use function PHPSTORM_META\type;
 
@@ -44,14 +45,12 @@ class MusicType extends AbstractType
                     'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
-            ->add('audio', TextType::class, [
-                'attr' => [
-                    'class' => 'm-1 w-100 mb-4'
-                ],
-                'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
-                ],
-            ]);
+            ->add('audioMusics', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+    ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

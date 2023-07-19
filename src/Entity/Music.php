@@ -3,11 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\MusicRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MusicRepository::class)]
+#[Vich\Uploadable]
 class Music
 {
     #[ORM\Id]
@@ -25,12 +32,22 @@ class Music
     #[ORM\Column(length: 255)]
     private ?string $audio = null;
 
+    #[Vich\UploadableField(mapping: 'audio_musics', fileNameProperty: 'audio')]
+    #[Assert\File(
+        maxSize: '2M',
+        extensions: ['mp3', 'mp4'],
+    )]
+    private ?File $audioMusics = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DateTimeInterface $updatedAt = null;
+
     #[ORM\ManyToOne(inversedBy: 'music')]
     #[ORM\JoinColumn(nullable: true)]
     private ?User $user = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorite')]
-    #[ORM\JoinTable(name:'numberFavorie')]
+    #[ORM\JoinTable(name: 'numberFavorie')]
     private Collection $numberFavorie;
 
     public function __construct()
@@ -76,6 +93,21 @@ class Music
         $this->audio = $audio;
 
         return $this;
+    }
+
+    public function setAudioMusics(File $audioMusics = null): Music
+    {
+        $this->audioMusics = $audioMusics;
+        if ($audioMusics) {
+            $this->updatedAt = new DateTime('now');
+        }
+
+        return $this;
+    }
+
+    public function getAudioMusics(): ?File
+    {
+        return $this->audioMusics;
     }
 
     public function getUser(): ?User

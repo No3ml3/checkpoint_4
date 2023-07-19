@@ -3,5 +3,24 @@
 {% block title %}Bienvenue Administrateur - {{ parent() }}{% endblock %}
 
 {% block body %}
-<h1>admin</h1>
+    <div class="mb-5 p-5" style="font-size: 3rem;">
+        <span
+            {{ stimulus_controller('symfony/ux-typed', {
+                strings: [
+                    'Welcom Administrateur de ce site,',
+                    'tu as disposition',
+                    'des outils pour faire ton travail !',
+                    'Bon courage !',
+                    'Que le sort te soir favorable ;)',
+                    'vive les gifs',
+                ],
+                loop: true,
+                showCursor: true,
+                cursorChar: '✨',
+            }) }}
+        ></span>
+    </div>
+<img src="{{ asset('build/images/gif1Admin.gif') }}" alt="image 1 admin funny">
+<img src="{{ asset('build/images/gif2Admin.gif') }}" alt="image 2 admin funny">
+<img src="{{ asset('build/images/gif3Admin.gif') }}" alt="image 3 admin funny">
 {% endblock %}
