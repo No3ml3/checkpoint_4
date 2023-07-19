@@ -48,12 +48,16 @@ nav {
     border: solid 2px $secondary;
 }
 
-/* against bootstrap */
-a {
-    color: $light;
-}
-
 /* button */
 .btn{
     background-color: $primary-light;
+    color: $dark;
 }   
+
+/* my heart */
+.bi-heart-fill{
+    color: $danger;
+}
+.bi-heart{
+    color: $danger;
+}

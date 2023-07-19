@@ -1,13 +1,13 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Edit Music{% endblock %}
+{% block title %}Modifé une musique{% endblock %}
 
 {% block body %}
-    <h1>Edit Music</h1>
+    <h1>Modifé une musique</h1>
 
-    {{ include('music/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('music/_form.html.twig', {'button_label': ' Enregistré'}) }}
 
-    <a href="{{ path('app_music_index') }}">back to list</a>
+    <a href="{{ path('app_music_index') }}">Retour à la liste</a>
 
     {{ include('music/_delete_form.html.twig') }}
 {% endblock %}
