@@ -9,25 +9,28 @@
 	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 		{% for user in users %}
 			<div class="col-sm-12 col-lg-6 col-xl-3 g-5">
-				<div class="card text-center border border-primary shadow-0 myCard card-type-background">
-					<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-						<img class="imageOnCard" src="{{ user.picture is not empty ? vich_uploader_asset(user) : asset('build/images/user.png') }}" class="rounded img-fluid"/>
-					</div>
-					<div class="card-body p-2">
-						<h5 class="titleCard my-3">{{ user.speudo }}</h5>
-						<div class="d-flex justify-content-center mt-4 mb-4">
-							<div class="line"></div>
+				<a href="{{ path('app_show_artist', {'id' : user.id })}}">
+					<div class="card text-center border border-primary shadow-0 myCard card-type-background">
+						<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+							<img class="imageOnCard" src="{{ user.picture is not empty ? vich_uploader_asset(user) : asset('build/images/user.png') }}" class="rounded img-fluid"/>
 						</div>
-						<h5 class="fs-5 mb-3">{{ user.firstName ~ ' ' ~  user.lastName }}</h5>
-						<h6 class="mb-3">Total musiques : {{ user.music|length }}</h6>
-						<div class="d-flex justify-content-center mt-4 mb-4">
-							<div class="line"></div>
-						</div>
+						<div class="card-body p-2">
+							<h5 class="titleCard my-3">{{ user.speudo }}</h5>
+							<div class="d-flex justify-content-center mt-4 mb-4">
+								<div class="line"></div>
+							</div>
+							<h5 class="fs-5 mb-3">{{ user.firstName ~ ' ' ~  user.lastName }}</h5>
+							<h6 class="mb-3">Total musiques :
+								{{ user.music|length }}</h6>
+							<div class="d-flex justify-content-center mt-4 mb-4">
+								<div class="line"></div>
+							</div>
 							<div>
 								<i class="bi bi-heart-fill"></i>
 							</div>
+						</div>
 					</div>
-				</div>
+				</a>
 			</div>
 		{% endfor %}
 	</div>

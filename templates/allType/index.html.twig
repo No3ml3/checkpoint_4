@@ -25,6 +25,7 @@
 						<h2>{{ type.name }}</h2>
 						{% if app.user %}
 							<a id="{{ 'isInFavoriteType' ~ loop.index }}" href="{{ path('app_favorite_type', {id: type.id})}}">
+							{{ type.favorite|length }}
 								<i class="bi {{ app.user.isInFavoriteType(type) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
 							</a>
 						{% endif %}

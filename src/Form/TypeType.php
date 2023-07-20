@@ -19,7 +19,6 @@ class TypeType extends AbstractType
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
                 'label' => 'Image',
-                'mapped' => false,
                 'attr' => [
                     'class' => 'm-1 w-100'
                 ],

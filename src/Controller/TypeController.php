@@ -38,7 +38,7 @@ class TypeController extends AbstractController
 
         return $this->render('type/new.html.twig', [
             'type' => $type,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

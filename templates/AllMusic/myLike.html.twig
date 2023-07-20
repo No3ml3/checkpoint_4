@@ -5,13 +5,14 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Mes musiques liké</h1>
+	<h1 class="text-center mb-5 title-page-main">Mes musiques liké</h1>
 	<div>
 		<table class="table table-responsive">
 			<tr>
 				<th>Titre</th>
 				<th>Artiste</th>
 				<th>audio</th>
+				<th>like</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,6 +24,9 @@
 						<figure>
 							<audio controls src="{{ asset('build/audio/' ~ music.audio) }}"></audio>
 						</figure>
+					</td>
+					<td>{{ music.numberFavorie|length }}
+						<i class="bi bi-heart-fill"></i>
 					</td>
 				</tr>
 			{% endfor %}

@@ -1,6 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-<h1>Bienvenue dans notre univers musical en ligne ! vous avez une erreur {{status_code}}</h1>
-<p>Il semblerait que vous ayez dévié de votre partition. Pas de souci, nous sommes là pour rétablir l'harmonie. Plongez dans notre scène sonore, explorez les mélodies envoûtantes et laissez-vous transporter par notre répertoire varié. Besoin d'aide pour trouver une chanson ? Contactez notre équipe dévouée. Profitez de ce voyage musical et gardez un rythme enchanteur !</p>
-{% endbock %}
+<h1 class="text-center mb-5 title-page-main">Bienvenue dans notre univers musical en ligne ! vous avez une erreur {{status_code}}</h1>
+<p class="text-center p-5">Il semblerait que vous ayez dévié de votre partition. Pas de souci, nous sommes là pour rétablir l'harmonie. Plongez dans notre scène sonore, explorez les mélodies envoûtantes et laissez-vous transporter par notre répertoire varié. Besoin d'aide pour trouver une chanson ? Contactez notre équipe dévouée. Profitez de ce voyage musical et gardez un rythme enchanteur !</p>
+<img class="error" src="{{ asset('build/images/error2.gif') }}" alt="error" style="height: 1200px;">
+<img class="error" src="{{ asset('build/images/error3.gif') }}" alt="error" style="height: 1200px;">
+<img class="error" src="{{ asset('build/images/error4.gif') }}" alt="error" style="height: 1200px;">
+<img class="error" src="{{ asset('build/images/error5.gif') }}" alt="error" style="height: 1200px;">
+<img class="error" src="{{ asset('build/images/error6.gif') }}" alt="error" style="height: 1200px;">
+{% endblock %}

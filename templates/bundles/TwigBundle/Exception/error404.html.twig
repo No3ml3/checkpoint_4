@@ -1,18 +1,14 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-<h1>Oh là là ! Ça sent le blues de la page 404 !</h1>
-<p>	♪ Bienvenue dans le royaume des liens brisés et des chemins perdus ♪
-	
-	Apparemment, vous avez cliqué sur un bouton interstellaire qui nous a fait prendre un mauvais virage. Ne vous inquiétez pas, notre équipe de DJ développeurs est sur le pied de danse pour résoudre ce problème !
-	
-	♪ Alors, pendant que nous réparons ce petit bug, laissez-nous vous enchanter avec une mélodie en attendant ♪
-	
-	♫♪ La-la-la, vous pouvez explorer notre page d'accueil en quête d'aventures musicales captivantes ♪♫
-	
-	♫♪ Vous pouvez aussi essayer notre fonction de recherche pour trouver une chanson qui vous fera vibrer ♪♫
-	
-	Et n'oubliez pas, nous sommes toujours à votre disposition pour vous aider à retrouver le rythme. Contactez notre équipe d'assistance pour une assistance sur mesure.
-	
-	♪♪ Merci de nous donner une chance de vous aider à transformer cette erreur en une symphonie harmonieuse ♪♪</p>
-{% endbock %}
+<h1 class="text-center mb-5 title-page-main">Oh là là ! Ça sent le blues de la page 404 !</h1>
+<p class="text-center p-5">	
+♪ Bienvenue au royaume des liens brisés et des chemins perdus ♪
+
+Notre équipe de DJ développeurs travaille sur le bug, mais en attendant, explorez notre page d'accueil pour des aventures musicales captivantes ♫♪
+
+Besoin d'aide ? Contactez notre équipe d'assistance pour une solution harmonieuse ♪♪</p>
+
+<img class="error" src="{{ asset('build/images/error1.gif') }}" alt="error">
+{% endblock %}
+

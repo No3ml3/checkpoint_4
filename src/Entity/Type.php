@@ -31,7 +31,11 @@ class Type
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
 
-    #[Vich\UploadableField(mapping: 'images_type', fileNameProperty: 'picture')]
+    #[Vich\UploadableField(mapping: 'images-type', fileNameProperty: 'picture')]
+    #[Assert\File(
+        maxSize: '2M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/jpg'],
+    )]
     private ?File $imagesType = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -54,7 +58,7 @@ class Type
 
         return $this;
     }
-    public function getImageType(): ?File
+    public function getImagesType(): ?File
     {
         return $this->imagesType;
     }
