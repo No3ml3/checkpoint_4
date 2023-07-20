@@ -30,6 +30,7 @@ class MusicController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $music->setUser($this->getUser());
             $entityManager->persist($music);
             $entityManager->flush();
 

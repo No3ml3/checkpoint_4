@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Music;
+use App\Entity\MusicResearch;
 use App\Entity\User;
 use App\Form\MusicType;
+use App\Form\MusicResearchType;
 use App\Repository\MusicRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,14 +19,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class AllMusicController extends AbstractController
 {
     #[Route('/', name: 'all_music')]
-    public function index(MusicRepository $musicRepository): Response
+    public function index(MusicRepository $musicRepository, Request $request ): Response
     {
-        $musics = $musicRepository->findBy([], ['name'=> 'ASC']);
+        $musicResearch = new MusicResearch;
+        $form = $this->createForm(MusicResearchType::class, $musicResearch);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $musics = $musicRepository->musicSearch($musicResearch);
+        } else {
+            $musics = $musicRepository->findBy([], ['name'=> 'ASC']);
+        }
 
         return $this->render(
             'AllMusic/index.html.twig',
             [
                 'musics' => $musics,
+                'form' => $form,
             ]
         );
     }

@@ -21,6 +21,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
+        $type = new TypeFixtures;
 
         for ($i = 0; $i < self::ARTISTS; $i++) {
             $user = new User();
@@ -44,6 +45,9 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
             for ($k = 0; $k < $faker->numberBetween(1, 30); $k++) {
                 $user->addFavorite($this->getReference('music_' . $faker->numberBetween(0, MusicFixtures::MUSIC_COUNT - 1)));
+            }
+            for ($t = 0; $t < $faker->numberBetween(1, 30); $t++) {
+                $user->addFavoriteType($this->getReference('type_' . $faker->numberBetween(0, $type->getNumberType()- 1)));
             }
             
 

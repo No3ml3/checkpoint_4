@@ -13,11 +13,29 @@
 	{% set total =  musics|length  %}
 	<div id="js-lenght-music" data-set="{{ total }}"></div>
 	<h1 class="text-center mb-5 title-page-main">Musiques maestro</h1>
+	{{ form_start(form) }}
+	{{ form_widget(form.name) }}
+	{{ form_widget(form.type, {'attr': {'placeholder': 'Quel genre ?'}}) }}
+		<div class="row">
+		<div class="col">
+			<div class="mb-3 d-flex justify-content-end gap-4">
+				<button id="Reset" name="Reset" type="reset" class="btn">
+					RESET
+				</button>
+
+				<button class="btn">
+					FILTRER
+				</button>
+			</div>
+		</div>
+	</div>
+	{{ form_end(form) }}
 	<div>
 		<table class="table table-responsive">
 			<tr>
 				<th>Titre</th>
 				<th>Artiste</th>
+				<th>Genre</th>
 				<th>audio</th>
 				<th>like</th>
 			</tr>
@@ -26,7 +44,8 @@
 			{% for music in musics %}
 				<tr>
 					<td>{{ music.name }}</td>
-					<td>{{ music.user.firstName ~ ' ' ~  music.user.lastName }}</td>
+					<td><a href="{{ path('app_show_artist', {'id' : music.user.id })}}">{{ music.user.speudo }}</a></td>
+					<td><a href="http://127.0.0.1:8000/musiques/?name=&type={{ music.type.id }}">{{ music.type.name }}</a></td>
 					<td>
 						<figure>
 							<audio controls src="{{ music.audio is not empty ? vich_uploader_asset(music) : asset('build/audio/' ~ music.audio) }}" alt="{{ music.name ?? 'Default' }} music"></audio>
@@ -35,6 +54,7 @@
 					<td>
 						{% if app.user %}
 							<a id="{{ 'watchlist' ~ loop.index }}" href="{{ path('app_favorite_music', {id: music.id})}}">
+							{{ music.numberFavorie|length }}
 								<i class="bi {{ app.user.isInFavorite(music) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
 							</a>
 						{% endif %}

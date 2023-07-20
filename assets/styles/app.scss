@@ -6,6 +6,15 @@ img {
     width: 100%;
 }
 
+.imageOnCard{
+    height: 200px;
+}
+
+.imageProfil{
+    width: 400px;
+    height: 400px;
+}
+
 /* all web site */
 .container-body {
     margin-top: 10rem;
@@ -47,7 +56,7 @@ nav {
 
 /* card */
 .card-type-background {
-    background: $background-gradient-color;
+    box-shadow: $card-shadow;
 }
 
 /* add music form */
@@ -70,8 +79,10 @@ nav {
     color: $danger;
 }
 
-/* audio */
-audio {
-    width: 100%;
-    height: 54px;
+/* line on card */
+.line{
+    width: 75%;
+    height: 1px;
+    background: $background-gradient-color;
 }
+
