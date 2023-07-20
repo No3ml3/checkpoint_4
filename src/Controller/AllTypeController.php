@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Type;
+use App\Entity\User;
 use App\Repository\TypeRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,5 +48,13 @@ class AllTypeController extends AbstractController
         return $this->json([
             'isInFavoriteType' => $user->isInFavoriteType($type)
         ]);
+    }
+
+    #[Route('/{id}/mesGenreLike', name: 'app_all_typeLike')]
+    public function myLike(User $user): Response
+    {
+        return $this->render(
+            'allType/myLike.html.twig',
+        );
     }
 }

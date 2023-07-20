@@ -57,6 +57,76 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
     }
 
+     public function findFavoriteArtist(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT
+        u.id,
+        u.first_name,
+        u.last_name,
+        u.speudo,
+        u.picture,
+        COUNT(DISTINCT l.user_target) AS num_likes,
+        COUNT(DISTINCT m.id) AS num_music,
+        (
+            SELECT audio
+            FROM music m2
+            WHERE m2.user_id = u.id
+            ORDER BY m2.id DESC
+            LIMIT 1
+        ) AS last_music
+    FROM user u
+    LEFT JOIN user_user l ON u.id = l.user_source
+    LEFT JOIN music m ON u.id = m.user_id
+    GROUP BY u.id, u.first_name, u.last_name, u.speudo, u.picture
+    ORDER BY num_likes DESC
+    LIMIT 4;
+            ';
+
+        $resultSet = $conn->executeQuery($sql);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    public function findTrueArtist(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT
+        u.id,
+        u.first_name,
+        u.last_name,
+        u.speudo,
+        u.picture,
+        COUNT(DISTINCT l.user_target) AS num_likes,
+        COUNT(DISTINCT m.id) AS num_music,
+        (
+            SELECT audio
+            FROM music m2
+            WHERE m2.user_id = u.id
+            ORDER BY m2.id DESC
+            LIMIT 1
+        ) AS last_music
+    FROM user u
+    LEFT JOIN user_user l ON u.id = l.user_source
+    LEFT JOIN music m ON u.id = m.user_id
+    GROUP BY u.id, u.first_name, u.last_name, u.speudo, u.picture
+    ORDER BY num_likes DESC
+    LIMIT 4;
+            ';
+
+        $resultSet = $conn->executeQuery($sql);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+
+
   /*   public function findFavoriteArtist(): array
     {
         $conn = $this->getEntityManager()->getConnection();

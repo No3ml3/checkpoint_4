@@ -50,6 +50,7 @@ Encore
     .addEntry('app', './assets/app.js')
     .addEntry("genre-js", "./assets/genreLike.js")
     .addEntry("music-js", "./assets/musicLike.js")
+    .addEntry("artist-js", "./assets/artistLike.js")
     
     .addStyleEntry("home", "./assets/styles/home.scss")
 

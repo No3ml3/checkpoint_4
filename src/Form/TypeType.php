@@ -23,7 +23,7 @@ class TypeType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ]);
     }

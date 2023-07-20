@@ -25,7 +25,11 @@
 						<img class="imageOnCard" src="{{ musicPopular.genrePicture }}" class="rounded img-fluid"/>
 					</div>
 					<div class="card-body p-2">
-						<h5 class="titleCard my-3">{{ musicPopular.name }}</h5>
+						<h5 class="titleCard my-3">
+							<i class="bi bi-music-note"></i>
+							{{ musicPopular.name }}
+							<i class="bi bi-music-note"></i>
+						</h5>
 						<h5 class="fs-5 mb-3">{{ musicPopular.firstName ~ ' ' ~  musicPopular.lastName }}</h5>
 						<h6 class="mb-3">{{ musicPopular.genreName }}</h6>
 						<div>
@@ -53,7 +57,11 @@
 						<img class="imageOnCard" src="{{ musicNew.type.picture }}" class="rounded img-fluid"/>
 					</div>
 					<div class="card-body p-2">
-						<h5 class="titleCard my-3">{{ musicNew.name }}</h5>
+						<h5 class="titleCard my-3">
+							<i class="bi bi-music-note"></i>
+							{{ musicNew.name }}
+							<i class="bi bi-music-note"></i>
+						</h5>
 						<h5 class="fs-5 mb-3">{{ musicNew.user.firstName ~ ' ' ~  musicNew.user.lastName }}</h5>
 						<h6 class="mb-3">{{ musicNew.type.name }}</h6>
 						<div>
@@ -74,18 +82,67 @@
 		<h2 class="title-page-main mt-5 pt-5 mb-4">Les genres les plus populaires</h2>
 		<div class="row">
 			{% for type in typePopular %}
-				<div class="m-xl-4 m-md-3 m-sm-0 p-0 col card text-center card-type-background p-1">
-					<a href="#">
-						<div class="bg-image typeCardBack" data-mdb-ripple-color="light">
-							<img class="imageOnCard" src="{{ type.picture }}" class="img-fluid rounded"/>
+				<div class="col-sm-12 col-lg-6 col-xl-3 g-3">
+					<div class="card text-center border border-primary shadow-0 myCard">
+						<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+							<img class="imageOnCard" src="{{ type.picture }}" class="rounded img-fluid"/>
 						</div>
-						<div class="card-body">
-							<h2>{{ type.name }}</h2>
+						<div class="card-body p-2">
+							<h5 class="titleCard my-3">
+								<i class="bi bi-music-note"></i>
+								{{ type.name }}
+								<i class="bi bi-music-note"></i>
+							</h5>
+							<div>
+								{{ type.numberOfUsers }}
+								<i class="bi bi-heart-fill"></i>
+							</div>
+							<div class="d-flex justify-content-center mt-4 mb-4">
+								<div class="line"></div>
+							</div>
+							<p>Dernier ajout</p>
+							{% if type.last_music %}
+								<figure>
+									<audio controls src="{{ asset('build/audio/' ~ type.last_music) }}"></audio>
+								</figure>
+							{% endif %}
 						</div>
-						<div>{{ type.numberOfUsers }}
-							<i class="bi bi-heart-fill"></i>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<h2 class="title-page-main mt-5 pt-5 mb-4">Les artistes les plus populaires</h2>
+		<div class="row">
+			{% for user in usersPopular %}
+				<div class="col-sm-12 col-lg-6 col-xl-3 g-3">
+					<div class="card text-center border border-primary shadow-0 myCard">
+						<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+							<img class="imageOnCard" src="{{ user.picture is not empty ? vich_uploader_asset(user) : asset('build/images/user.png') }}" class="rounded img-fluid"/>
 						</div>
-					</a>
+						<div class="card-body p-2">
+							<h5 class="titleCard my-3">
+								<i class="bi bi-music-note"></i>
+								{{ user.speudo }}
+								<i class="bi bi-music-note"></i>
+							</h5>
+							<h5 class="fs-5 mb-3">{{ user.first_name ~ ' ' ~  user.last_name }}</h5>
+							<h6>Total musique :{{ user.num_music }}</h6>
+							<div>
+								<div>{{ user.num_likes }}
+									<i class="bi bi-heart-fill"></i>
+								</div>
+								<div class="d-flex justify-content-center mt-4 mb-4">
+									<div class="line"></div>
+								</div>
+								{% if user.last_music %}
+								<p>Dernier ajout</p>
+									<figure>
+										<audio controls src="{{ asset('build/audio/' ~ user.last_music) }}"></audio>
+									</figure>
+								{% endif %}
+							</div>
+						</div>
+					</div>
 				</div>
 			{% endfor %}
 		</div>

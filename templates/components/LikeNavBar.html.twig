@@ -1,0 +1,31 @@
+<div{{attributes}}>
+	<div class="mt-4">
+		<ul>
+			<li>
+				<a href="{{ path('app_all_myLike', {'id' : app.user.id })}}">Mes musiques</a>
+			</li>
+			<li>
+				<a href="{{ path('app_all_typeLike', {'id' : app.user.id })}}">Mes genres</a>
+			</li>
+			<li>
+				<a href="{{ path('app_likeArtist', {'id' : app.user.id })}}">Mes artistes</a>
+			</li>
+			<li>
+				<div class="mt-4 mb-4 w-100">
+					<div class="line"></div>
+				</div>
+			</li>
+			<li>MES PLAYLISTS :</li>
+			{% for playlist in this.playlists %}
+				<li>
+					<a href="{{ path('app_playlist_show', {'id' : playlist.id })}}">{{ playlist.name }}</a>
+				</li>
+			{% endfor %}
+			<br>
+			<li>
+				<a href="{{ path('app_playlist_new')}}">ajouter une playliste</a>
+			</li>
+
+		</ul>
+	</div>
+</div>

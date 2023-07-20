@@ -1,6 +1,7 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Nos artiste -
+{% block title %}
+	Mes musiques -
 	{{ parent() }}
 {% endblock %}
 
@@ -12,12 +13,17 @@
 
 
 {% block body %}
-	{% set total = users|length  %}
+	{% set total = app.user.likeByMe|length  %}
 	<div id="js-lenght-user" data-set="{{ total }}"></div>
-	<h1 class="text-center mb-5 title-page-main">Artistes maestro</h1>
-	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-		{% for user in users %}
-				<div class="col-sm-12 col-lg-6 col-xl-3 g-3">
+	<h1 class="text-center mb-5 title-page-main">Mes artistes liké</h1>
+	<div class="row">
+		<div class="col-2">
+			{{ component('LikeNavBar') }}
+		</div>
+		<div class="col-10">
+			<div class="row">
+				{% for user in app.user.likeByMe %}
+					<div class="col-sm-12 col-lg-6 col-xl-3 g-3">
 					<a href="{{ path('app_show_artist', {'id' : user.id })}}">
 						<div class="card text-center border border-primary shadow-0 myCard">
 							<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
@@ -51,6 +57,8 @@
 						</div>
 					</a>
 				</div>
-		{% endfor %}
+				{% endfor %}
+			</div>
+		</div>
 	</div>
 {% endblock %}

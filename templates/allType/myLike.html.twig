@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-	Les genre -
+	Mes musiques -
 	{{ parent() }}
 {% endblock %}
 
@@ -11,12 +11,17 @@
 {% endblock %}
 
 {% block body %}
-	{% set total =  types|length  %}
+	{% set total = app.user.favoriteType|length  %}
 	<div id="js-lenght-type" data-set="{{ total }}"></div>
-	<h1 class="text-center mb-5 title-page-main">Genres maestro</h1>
+	<h1 class="text-center mb-5 title-page-main">Mes genres liké</h1>
 	<div class="row">
-		{% for type in types %}
-			<div class="col-sm-12 col-lg-6 col-xl-3 g-3">
+		<div class="col-2">
+				{{ component('LikeNavBar') }}
+		</div>
+		<div class="col-10">
+			<div class="row">
+				{% for type in app.user.favoriteType %}
+					<div class="col-sm-12 col-lg-6 col-xl-3 g-3">
 				<div class="card text-center border border-primary shadow-0 myCard">
 					<a href="http://127.0.0.1:8000/musiques/?name=&type={{ type.id }}">
 						<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
@@ -42,14 +47,18 @@
 							<p>la dernière nouveauté</p>
 							{% set music = type.music|last %}
 							{% if music %}
+                            <div class="audioWidth">
 								<figure>
 									<audio controls src="{{ asset('build/audio/' ~ music.audio) }}"></audio>
 								</figure>
+                                </div>
 							{% endif %}
 						</div>
 					</a>
 				</div>
 			</div>
-		{% endfor %}
+				{% endfor %}
+			</div>
+		</div>
 	</div>
 {% endblock %}

@@ -54,11 +54,6 @@ nav {
     margin-bottom: 2rem;
 }
 
-/* card */
-.card-type-background {
-    box-shadow: $card-shadow;
-}
-
 /* add music form */
 .border-add-music-form {
     border: solid 2px $secondary;
@@ -79,10 +74,17 @@ nav {
     color: $danger;
 }
 
-/* line on card */
+/* card */
 .line{
     width: 75%;
     height: 1px;
     background: $background-gradient-color;
 }
+.titleCard{
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
 
+audio {
+    width: 100%;
+}
