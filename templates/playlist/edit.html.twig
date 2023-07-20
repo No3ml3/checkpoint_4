@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Edit Playlist
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center mb-5 title-page-main">Modifié une playlist</h1>
+	<div class="d-flex justify-content-center pb-5">
+		<div class="border-add-music-form py-4 rounded d-flex justify-content-center w-75">
+			<div class="rounded w-75 px-5">
+				<a class="btn mb-4" href="{{ path('app_playlist_show', {'id' : playlist.id })}}">retour</a>
+				{{ include('playlist/_form.html.twig', {'button_label': 'Modifié'}) }}
+				<div class="my-3"></div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

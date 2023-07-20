@@ -28,8 +28,17 @@ class TypeRepository extends ServiceEntityRepository
         $sql = '
         SELECT
     t.name AS name,
+    t.id,
     t.picture AS picture,
-    COUNT(tu.user_id) AS numberOfUsers
+    COUNT(tu.user_id) AS numberOfUsers,
+    (
+        SELECT m.audio
+        FROM music m
+        JOIN type_user tu2 ON m.user_id = tu2.user_id
+        WHERE tu2.type_id = t.id
+        ORDER BY m.id DESC
+        LIMIT 1
+    ) AS last_music
 FROM
     type t
 JOIN
@@ -38,6 +47,7 @@ JOIN
     user u ON tu.user_id = u.id
 GROUP BY
     t.name,
+    t.id,
     t.picture
 ORDER BY
     COUNT(tu.user_id) DESC

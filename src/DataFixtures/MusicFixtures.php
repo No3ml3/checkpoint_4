@@ -35,7 +35,7 @@ class MusicFixtures extends Fixture implements DependentFixtureInterface
 
         for ($i = 0; $i < self::MUSIC_COUNT; $i++) {
             $music = new Music();
-            $music->setName($faker->word() . $faker->firstName());
+            $music->setName($faker->word());
             $music->setAudio($this->musicArray[$faker->numberBetween(0, (count($this->musicArray)-1))]);
 
             $music->setType($this->getReference('type_' . $faker->numberBetween(1, $type->getNumberType()- 1)));

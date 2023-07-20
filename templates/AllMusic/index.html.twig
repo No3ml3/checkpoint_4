@@ -30,38 +30,40 @@
 		</div>
 	</div>
 	{{ form_end(form) }}
-	<div>
-		<table class="table table-responsive">
-			<tr>
-				<th>Titre</th>
-				<th>Artiste</th>
-				<th>Genre</th>
-				<th>audio</th>
-				<th>like</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for music in musics %}
-				<tr>
-					<td>{{ music.name }}</td>
-					<td><a href="{{ path('app_show_artist', {'id' : music.user.id })}}">{{ music.user.speudo }}</a></td>
-					<td><a href="http://127.0.0.1:8000/musiques/?name=&type={{ music.type.id }}">{{ music.type.name }}</a></td>
-					<td>
-						<figure>
-							<audio controls src="{{ music.audio is not empty ? vich_uploader_asset(music) : asset('build/audio/' ~ music.audio) }}" alt="{{ music.name ?? 'Default' }} music"></audio>
-						</figure>
-					</td>
-					<td>
+
+
+	<div class="row">
+		{% for music in musics %}
+			<div class="col-sm-12 col-lg-6 col-xl-3 g-3">
+				<div class="card text-center border border-primary shadow-0 myCard">
+					<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+						<img class="imageOnCard" src="{{ music.type.picture }}" class="rounded img-fluid"/>
+					</div>
+					<div class="card-body p-2">
+						<h5 class="titleCard my-3">
+							<i class="bi bi-music-note"></i>
+							{{ music.name }}
+							<i class="bi bi-music-note"></i>
+						</h5>
+						<h5 class="fs-5 mb-3">{{ music.user.firstName ~ ' ' ~  music.user.lastName }}</h5>
+						<h6 class="mb-3">{{ music.type.name }}</h6>
+						<div>
 						{% if app.user %}
 							<a id="{{ 'watchlist' ~ loop.index }}" href="{{ path('app_favorite_music', {id: music.id})}}">
 							{{ music.numberFavorie|length }}
 								<i class="bi {{ app.user.isInFavorite(music) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
 							</a>
 						{% endif %}
-					</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-
-</div>{% endblock %}
+						</div>
+						<div class="d-flex justify-content-center mt-4 mb-4">
+							<div class="line"></div>
+						</div>
+						<figure>
+							<audio controls src="{{ asset('build/audio/' ~ music.audio) }}"></audio>
+						</figure>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

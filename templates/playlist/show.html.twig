@@ -1,8 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}
-	Mes musiques -
-	{{ parent() }}
+{% block title %}Playlist
 {% endblock %}
 
 {% block javascripts %}
@@ -10,19 +8,27 @@
 	{{ encore_entry_script_tags('music-js') }}
 {% endblock %}
 
-
 {% block body %}
-	{% set total = app.user.favorite|length  %}
+	{% set total = playlist.musics|length  %}
 	<div id="js-lenght-music" data-set="{{ total }}"></div>
-	<h1 class="text-center mb-5 title-page-main">Mes musiques liké</h1>
+
+	<h1 class="text-center mb-5 title-page-main">Playlist</h1>
+	<h2 class="text-center text-uppercase my-4"><i class="bi bi-music-note-list"></i> {{ playlist.name }}</h2>
+
+
 	<div class="row">
 		<div class="col-2">
-				{{ component('LikeNavBar') }}
+			{{ component('LikeNavBar') }}
 		</div>
 		<div class="col-10">
+			<div class="d-flex align-items-center">
+				{{ include('playlist/_delete_form.html.twig') }}
+				<a class="btn mx-4" href="{{ path('app_playlist_edit', {'id': playlist.id}) }}">Modifié</a><br>
+				<a class="btn" href="{{ path('app_all_myLike', {'id' : app.user.id })}}">Retour</a>
+			</div>
 			<div class="row">
-				{% for music in app.user.favorite %}
-					<div class="col-sm-12 col-lg-6 col-xl-4 g-3">
+				{% for music in playlist.musics %}
+					<div class="col-sm-12 col-lg-6 col-xl-3 g-3">
 						<div class="card text-center border border-primary shadow-0 myCard">
 							<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
 								<img class="imageOnCard" src="{{ music.type.picture }}" class="rounded img-fluid"/>
@@ -56,4 +62,5 @@
 			</div>
 		</div>
 	</div>
+
 {% endblock %}

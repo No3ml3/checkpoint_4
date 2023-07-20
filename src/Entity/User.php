@@ -79,11 +79,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank]
     private ?string $speudo = null;
 
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'LikeMe')]
+    private Collection $likeByMe;
+
+    #[ORM\ManyToMany(targetEntity: self::class, mappedBy: 'likeByMe')]
+    private Collection $LikeMe;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Playlist::class)]
+    private Collection $playlists;
+
     public function __construct()
     {
         $this->music = new ArrayCollection();
         $this->favorite = new ArrayCollection();
         $this->favoriteType = new ArrayCollection();
+        $this->likeByMe = new ArrayCollection();
+        $this->LikeMe = new ArrayCollection();
+        $this->playlists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -337,6 +349,96 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSpeudo(string $speudo): static
     {
         $this->speudo = $speudo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getLikeByMe(): Collection
+    {
+        return $this->likeByMe;
+    }
+
+    public function addLikeByMe(self $likeByMe): static
+    {
+        if (!$this->likeByMe->contains($likeByMe)) {
+            $this->likeByMe->add($likeByMe);
+        }
+
+        return $this;
+    }
+
+    public function removeLikeByMe(self $likeByMe): static
+    {
+        $this->likeByMe->removeElement($likeByMe);
+
+        return $this;
+    }
+
+    public function isInLikeByMe(User $user): bool
+    {
+        if (in_array($user, $this->getLikeByMe()->toArray())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getLikeMe(): Collection
+    {
+        return $this->LikeMe;
+    }
+
+    public function addLikeMe(self $likeMe): static
+    {
+        if (!$this->LikeMe->contains($likeMe)) {
+            $this->LikeMe->add($likeMe);
+            $likeMe->addLikeByMe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLikeMe(self $likeMe): static
+    {
+        if ($this->LikeMe->removeElement($likeMe)) {
+            $likeMe->removeLikeByMe($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Playlist>
+     */
+    public function getPlaylists(): Collection
+    {
+        return $this->playlists;
+    }
+
+    public function addPlaylist(Playlist $playlist): static
+    {
+        if (!$this->playlists->contains($playlist)) {
+            $this->playlists->add($playlist);
+            $playlist->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlaylist(Playlist $playlist): static
+    {
+        if ($this->playlists->removeElement($playlist)) {
+            // set the owning side to null (unless already changed)
+            if ($playlist->getUser() === $this) {
+                $playlist->setUser(null);
+            }
+        }
 
         return $this;
     }

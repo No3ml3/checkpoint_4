@@ -12,7 +12,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const ARTISTS = 50;
+    public const ARTISTS_COUNT = 50;
     private UserPasswordHasherInterface $passwordHasher;
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
@@ -23,7 +23,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $faker = Factory::create('fr_FR');
         $type = new TypeFixtures;
 
-        for ($i = 0; $i < self::ARTISTS; $i++) {
+        for ($i = 0; $i < self::ARTISTS_COUNT; $i++) {
             $user = new User();
             $user->setFirstName($faker->firstName());
             $user->setLastName($faker->lastName());
@@ -48,6 +48,14 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             }
             for ($t = 0; $t < $faker->numberBetween(1, 30); $t++) {
                 $user->addFavoriteType($this->getReference('type_' . $faker->numberBetween(0, $type->getNumberType()- 1)));
+            }
+
+            if($i>40){
+                $user->addLikeByMe($this->getReference('user_35'));
+                $user->addLikeByMe($this->getReference('user_36'));
+                $user->addLikeByMe($this->getReference('user_37'));
+                $user->addLikeByMe($this->getReference('user_38'));
+                $user->addLikeByMe($this->getReference('user_39'));
             }
             
 

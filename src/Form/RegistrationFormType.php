@@ -29,7 +29,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
             ->add('lastName', TextType::class, [
@@ -38,7 +38,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
             ->add('birthday', BirthdayType::class, [
@@ -47,7 +47,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
             ->add('country', CountryType::class, [
@@ -56,7 +56,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
             ->add('speudo', TextType::class, [
@@ -65,7 +65,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
             ->add('email', EmailType::class, [
@@ -74,7 +74,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
             ->add('imagesUser', VichFileType::class, [
@@ -86,7 +86,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
 
@@ -111,7 +111,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Mot de passe',
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ]);
     }

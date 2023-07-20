@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}New Playlist
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center mb-5 title-page-main">Ajoute une playlist</h1>
+	<div class="d-flex justify-content-center pb-5">
+		<div class="border-add-music-form py-4 rounded d-flex justify-content-center w-75">
+			<div class="rounded w-75 px-5">
+				{{ include('playlist/_form.html.twig') }}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

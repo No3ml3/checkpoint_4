@@ -23,7 +23,7 @@ class ProfilEditType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
             ->add('lastName', TextType::class, [
@@ -32,7 +32,7 @@ class ProfilEditType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
             ->add('birthday', BirthdayType::class, [
@@ -41,7 +41,7 @@ class ProfilEditType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
             ->add('country', CountryType::class, [
@@ -50,7 +50,7 @@ class ProfilEditType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
             ->add('speudo', TextType::class, [
@@ -59,7 +59,7 @@ class ProfilEditType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
             ->add('email', EmailType::class, [
@@ -68,7 +68,7 @@ class ProfilEditType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
             ->add('imagesUser', VichFileType::class, [
@@ -80,7 +80,7 @@ class ProfilEditType extends AbstractType
                     'class' => 'm-1 w-100'
                 ],
                 'label_attr' => [
-                    'class' => 'text-dark form-label text-uppercase letter-spacing mt-4'
+                    'class' => 'form-label text-uppercase letter-spacing mt-4'
                 ],
             ])
 
